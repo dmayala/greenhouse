@@ -4,6 +4,8 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
+import * as productRoutes from './routes/products';
+
 import React from 'react';
 import Router from 'react-router';
 import routes from 'routes';
@@ -23,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('/api/products', productRoutes.findAll);
+  
 // react router config
 app.use((req, res, next) => {
   let router = Router.create({ 
