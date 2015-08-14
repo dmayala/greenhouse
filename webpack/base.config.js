@@ -16,7 +16,8 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.json$/, exclude: /node_modules/, loader: 'json'},
-      {test: JS_REGEX, exclude: /node_modules/, loader: 'babel?optional[]=runtime&stage=0'}
+      {test: JS_REGEX, exclude: /node_modules/, loader: 'babel?optional[]=runtime&stage=0'},
+      {test: /\.(png|woff|woff2|eot|ttf|svg)$/, exclude: /(node_modules|bower_components)/, loader: 'url-loader?limit=100000'}
     ],
   },
   plugins: [

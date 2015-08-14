@@ -59,8 +59,11 @@ const startServer = () => {
         watch(
           path.join(__dirname, '../../server'),
           (file) => {
-            console.log(colors.blue(`[File Changed] - ${file}`));
-            !file.match('webpack-stats.json') && !file.match('.swp') && !file.match(fs.lstatSync(file).isDirectory()) ? restartServer() : noop()
+            if (!file.match('webpack-stats.json') && !file.match('.swp') && !file.match(fs.lstatSync(file).isDirectory())) {
+              console.log(colors.blue(`[File Changed] - ${file}`));
+              return restartServer();
+            }
+            return noop();
           }
         );
       }

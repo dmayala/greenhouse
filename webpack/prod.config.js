@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path');
 
 module.exports = {
   entry: {
@@ -15,16 +16,24 @@ module.exports = {
     loaders: [
       { 
         test: /\.scss$/,
+        exclude: /(node_modules|bower_components)/,
         loader: ExtractTextPlugin.extract(
           // activate source maps via loader query
           'css?sourceMap!' +
-          'sass?sourceMap'
+          'sass?sourceMap' +
+          '&includePaths[]=' +
+            encodeURIComponent(path.resolve(__dirname,
+            '../node_modules')) 
         )
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loaders: [ 'babel?optional[]=runtime&stage=0' ]
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
       }
     ]
   },

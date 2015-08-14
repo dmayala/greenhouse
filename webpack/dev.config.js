@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import baseConfig from './base.config';
+import path from 'path';
 import startExpress from './utils/startExpress';
 
 const config = Object.assign({}, baseConfig, {
@@ -21,8 +22,11 @@ config.module.loaders = config.module.loaders.concat([
   },
   { 
     test: /\.scss$/,
-    loader: 'style!css!sass'
-  }
+    exclude: /(node_modules|bower_components)/,
+    loader: 'style!css!sass?' +
+            '&includePaths[]=' + encodeURIComponent(path.resolve(__dirname, '../node_modules')) 
+  },
+  { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
 ]);
 
 // add `react-hot` on JS files
