@@ -4,6 +4,7 @@
 
 # npm packages
 node_modules
+npm-debug.log
 
 # bower packages
 bower_components
@@ -22,6 +23,9 @@ Thumbs.db
 # Compiled files
 public/css/*
 public/js/*
+
+# images
+public/img/products
 
 # webpack stats
 webpack-stats.json

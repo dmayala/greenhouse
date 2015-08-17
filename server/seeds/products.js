@@ -76,10 +76,10 @@ exports.seed = function(knex, Promise) {
         nutix_id: '513fceb475b8dbbc21001016'
       },
       {
-        name: 'Grapes',
+        name: 'Grape',
         description: 'One of the popular among everyday fruits, grapes are widely viewed in many cultures as “the queen of fruits" since earlier times. These tiny berries of Europe and Mediterranean regions are the storehouse of numerous health promoting phyto-nutrients such as poly-phenolic antioxidants, vitamins, and minerals.',
         price: 1.99,
-        image: 'grapes.png',
+        image: 'grape.png',
         nutix_id: '513fceb575b8dbbc21001052'
       },
       {
@@ -132,6 +132,13 @@ exports.seed = function(knex, Promise) {
         nutix_id: '513fceb575b8dbbc210010ab'
       },
       {
+        name: 'Orange',
+        description: 'Delicious and juicy orange fruit contains an impressive list of essential nutrients, vitamins, minerals for normal growth and development and overall well-being.',
+        price: 1.49,
+        image: 'orange.png',
+        nutix_id: '513fceb575b8dbbc210010bf'
+      },
+      {
         name: 'Peach',
         description: 'Wonderfully delicious peaches are low in calories (100 g just provide 39 calories), and contain no saturated fats. Nonetheless, they are packed with numerous health promoting compounds, minerals, and vitamins.',
         price: 1.99,
@@ -152,13 +159,7 @@ exports.seed = function(knex, Promise) {
         image: 'persimmon.png',
         nutix_id: '513fceb575b8dbbc2100112e'
       },
-      {
-        name: 'Plum',
-        description: 'Plums are low in calories (46 calories per 100 g) and contain no saturated fats; however, they hold numerous health promoting compounds, minerals, and vitamins.',
-        price: 1.99,
-        image: 'plum.png',
-        nutix_id: '513fceb575b8dbbc2100114b'
-      },
+
       {
         name: 'Pineapple',
         description: 'Juicy, deliciously tangy and sweet, pineapple fruit is rich in vitamins, minerals and health benefiting proteolytic compound, bromelain.',
@@ -167,11 +168,11 @@ exports.seed = function(knex, Promise) {
         nutix_id: '513fceb575b8dbbc21001133'
       },
       {
-        name: 'Orange',
-        description: 'Delicious and juicy orange fruit contains an impressive list of essential nutrients, vitamins, minerals for normal growth and development and overall well-being.',
-        price: 1.49,
-        image: 'orange.png',
-        nutix_id: '513fceb575b8dbbc210010bf'
+        name: 'Plum',
+        description: 'Plums are low in calories (46 calories per 100 g) and contain no saturated fats; however, they hold numerous health promoting compounds, minerals, and vitamins.',
+        price: 1.99,
+        image: 'plum.png',
+        nutix_id: '513fceb575b8dbbc2100114b'
       },
       {
         name: 'Raspberry',

@@ -1,5 +1,5 @@
 import Alt from 'alt';
-import AltResolver from './altResolver';
+import AltResolver from 'utils/altResolver';
 
 class Flux extends Alt {
 
@@ -9,10 +9,10 @@ class Flux extends Alt {
     this._resolver = new AltResolver();
 
     // Register Actions
-    // this.addActions('wines', require('../actions/WineActions'));
+    this.addActions('productList', require('actions/ProductListActions'));
 
     // Register Stores
-    // this.addStore('wines', require('../stores/WineStore'));
+    this.addStore('productList', require('stores/ProductListStore'));
   }
 
   resolve(result) {

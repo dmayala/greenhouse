@@ -4,6 +4,9 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
+import gm from 'gm';
+const imageMagick = gm.subClass({ imageMagick: true });
+
 import * as productRoutes from './routes/products';
 
 import React from 'react';
@@ -24,6 +27,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
+
+app.get('/img/products/:width/:imageName', (req, res, next) => {
+  let { width, imageName } = req.params;
+  imageMagick(path.join(__dirname, `../public/img/products/${imageName}`))
+    .resize(width)
+    .stream('png', (err, stdout) => {
+      if (err) return next(err);
+      res.setHeader('Expires', new Date(Date.now() + 604800000));
+      res.setHeader('Content-Type', 'image/png');
+      stdout.pipe(res);
+    });
+});
 
 app.get('/api/products', productRoutes.findAll);
   
