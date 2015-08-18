@@ -24,9 +24,6 @@ Thumbs.db
 public/css/*
 public/js/*
 
-# images
-public/img/products
-
 # webpack stats
 webpack-stats.json
 
