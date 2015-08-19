@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import gm from 'gm';
 const imageMagick = gm.subClass({ imageMagick: true });
 
-import * as productRoutes from './routes/products';
+import productRoutes from './routes/products';
 
 import React from 'react';
 import Router from 'react-router';
@@ -40,7 +40,7 @@ app.get('/img/products/:width/:imageName', (req, res, next) => {
     });
 });
 
-app.get('/api/products', productRoutes.findAll);
+app.use('/api/products', productRoutes);
   
 // react router config
 app.use((req, res, next) => {

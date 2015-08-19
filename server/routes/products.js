@@ -1,6 +1,11 @@
+import express from 'express';
 import ProductCollection from '../collections/products';
 
-export async function findAll(req, res) {
+const router = express.Router();
+
+router.get('/', async (req, res) => {
   let items = await ProductCollection.forge().fetch();
   res.send(items);
-}
+});
+
+module.exports = router;
