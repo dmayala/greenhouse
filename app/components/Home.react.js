@@ -4,7 +4,7 @@ if (process.env.BROWSER) {
   require('stylesheets/components/_Home');
 }
 
-export class Home extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div>
@@ -13,3 +13,5 @@ export class Home extends React.Component {
     );
   }
 }
+
+export default Home;

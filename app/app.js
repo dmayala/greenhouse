@@ -4,8 +4,8 @@ import React from 'react';
 import Iso from 'iso';
 import Router from 'react-router';
 
-import routes from './routes';
-import Flux from './utils/flux';
+import routes from 'routes';
+import Flux from 'utils/flux';
 
 
 const bootstrap = () => {

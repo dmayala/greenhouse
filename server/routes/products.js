@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductCollection from '../collections/products';
+import ProductCollection from '../entities/collections/products';
 
 const router = express.Router();
 

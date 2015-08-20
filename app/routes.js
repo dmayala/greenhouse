@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from 'react-router';
-import {MainApp} from 'components/MainApp.react';
-import {Home} from 'components/Home.react';
-import {ProductList} from 'components/ProductList.react';
+import MainApp from 'components/MainApp.react';
+import Home from 'components/Home.react';
+import ProductList from 'components/ProductList.react';
 const { Route, DefaultRoute, RouteHandler, Link } = Router;
 
 let routes = (

@@ -4,7 +4,7 @@ if (process.env.BROWSER) {
   require('stylesheets/components/_ProductList');
 }
 
-export class ProductList extends React.Component {
+class ProductList extends React.Component {
   state = this.getState();
 
   static contextTypes = {
@@ -46,7 +46,7 @@ export class ProductList extends React.Component {
           <a className="thumbnail plain" style={{ textAlign: 'center' }}>
             <img src={ `img/products/150/${product.image}` } alt="" />
             <h5>{ product.name }</h5>
-            { product.price}
+            { product.price }
           </a>
       </div>
       );
@@ -62,3 +62,5 @@ export class ProductList extends React.Component {
     );
   }
 }
+
+export default ProductList;

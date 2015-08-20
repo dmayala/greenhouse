@@ -1,4 +1,4 @@
-import Bookshelf from '../bookshelf';
+import Bookshelf from '../../bookshelf';
 
 const Product = Bookshelf.Model.extend({
   tableName: 'products'
