@@ -48,7 +48,11 @@ class ProductList extends React.Component {
     });
     return (
       <div className="container">
-        <div className="row">
+        <div className="with-header row">
+          <div className="header-image">
+            <h1>Fruity</h1>
+            <h2>The deliciously sweet scents of a country orchard stroll</h2>
+          </div>
           <div className="thumbnails">
             { products }
           </div>

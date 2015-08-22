@@ -1,0 +1,33 @@
+.with-header {
+  
+  position: relative;
+
+  .header-image {
+    background-image: url('/img/bgheader.png');
+    height: 399px;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: white;
+    padding: 120px;
+    margin-top: -19px;
+  }
+
+  .thumbnails {
+    margin-top: 320px;
+  }
+
+  h1, h2 {
+    text-shadow: 1px 1px 1px #000;
+  }
+
+  h1 {
+    font-size: 64px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
