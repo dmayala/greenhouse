@@ -9,6 +9,7 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
+    "accounting": "^0.4.1",
     "alt": "^0.17.0",
     "app-module-path": "^1.0.3",
     "bluebird": "^2.9.25",

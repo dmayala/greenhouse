@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductListItem from 'components/ProductListItem';
+import ProductListItem from 'components/ProductListItem.react';
 
 if (process.env.BROWSER) {
   require('stylesheets/components/_ProductList');
