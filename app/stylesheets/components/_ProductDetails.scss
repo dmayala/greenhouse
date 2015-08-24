@@ -1,0 +1,33 @@
+.product-details {
+  .product-image {
+    img {
+      width: 100%;
+    }
+  }
+  
+  .price {
+    font-size: 20px;
+  }
+
+  .description {
+    line-height: 26px;
+    font-size: 13px;
+  }
+
+  .addToCart {
+    margin-top: 20px;
+
+    .form-group {
+      display: inline-block; 
+      width: 100%;
+    }
+
+    .cart-button {
+      padding-left: 0;
+    }
+
+    .btn {
+      width: 90%;
+    }
+  }
+}

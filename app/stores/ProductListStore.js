@@ -1,4 +1,3 @@
-import {contains} from 'lodash';
 import ProductListActions from '../actions/ProductListActions';
 
 class ProductListStore {
@@ -8,7 +7,6 @@ class ProductListStore {
   }
 
   onGetProductsSuccess(data) {
-    //Object.assign(this, data.entities);
     this.products = data;
   }
 

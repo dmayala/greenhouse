@@ -41,9 +41,9 @@ class ProductList extends React.Component {
   }
 
   render() {
-    let products = this.state.products.map((product) => {
+    let products = this.state.products.map((product, index) => {
       return (
-        <ProductListItem product={product} />
+        <ProductListItem product={product} key={index} />
       );
     });
     return (

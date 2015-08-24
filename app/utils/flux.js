@@ -10,9 +10,11 @@ class Flux extends Alt {
 
     // Register Actions
     this.addActions('productList', require('actions/ProductListActions'));
+    this.addActions('productDetails', require('actions/ProductDetailsActions'));
 
     // Register Stores
     this.addStore('productList', require('stores/ProductListStore'));
+    this.addStore('productDetails', require('stores/ProductDetailsStore'));
   }
 
   resolve(result) {
