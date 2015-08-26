@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     if (product) {
 
       if (_.includes(withRelated, 'nutrition')) {
-        let nutixReq = await fetch(`https://api.nutritionix.com/v1/item/${product.get('nutix_id')}?appId=${'insert appId'}&appKey=${ 'insert appKey' }`); 
+        let nutixReq = await fetch(`https://api.nutritionix.com/v1/item/${product.get('nutix_id')}?appId=${process.env.NUTRIX_APP_ID}&appKey=${process.env.NUTRIX_APP_KEY}`); 
         let nutixData = await nutixReq.json();
         product.set('nutrition', nutixData);
       }

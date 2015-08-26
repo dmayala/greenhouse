@@ -1,8 +1,8 @@
-var config = require('./server/config');
+require('dotenv').load();
 
 module.exports = {
   client: 'pg',
-  connection: config.connection, 
+  connection: process.env.PG_CONNECTION_STRING, 
   migrations: {
     directory: __dirname + '/server/migrations'
   },

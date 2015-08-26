@@ -1,10 +1,9 @@
 import Bookshelf from 'bookshelf';
 import knex from 'knex';
-import config from './config';
 
 let dbConfig = knex({
   client: 'pg',
-  connection: config.connection
+  connection: process.env.DATABASE_URL
 });
 
 let dbConnection = Bookshelf(dbConfig);
