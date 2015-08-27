@@ -37,6 +37,13 @@ class ProductDetails extends React.Component {
               .unlisten(this._onChange);
   }
 
+  addToCart = () => {
+    let sku = 173;
+    let qty = 3;
+    this.props.flux.getActions('cart')
+                   .add(sku, qty);
+  }
+
   _onChange = () => {
     this.setState(this.getState());
   }
@@ -73,10 +80,10 @@ class ProductDetails extends React.Component {
                 </Input>
               </div>
               <div className="col-md-9 cart-button">
-                <Button bsStyle='primary'>Add to Cart</Button>
+                <Button bsStyle="primary" onClick={ this.addToCart }>Add to Cart</Button>
               </div>
             </div>
-            <div className="description">{ product.description}</div>
+            <div className="description">{ product.description }</div>
           </div>
         </div>
       </div>
