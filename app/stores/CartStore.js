@@ -3,7 +3,7 @@
 class CartStore {
   constructor() {
     this.products = {};
-    this.bindActions(this.alt.getActions('cartActions'));
+    this.bindActions(this.alt.getActions('cart'));
   }
 
   onAdd(data) {

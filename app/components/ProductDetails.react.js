@@ -38,8 +38,8 @@ class ProductDetails extends React.Component {
   }
 
   addToCart = () => {
-    let sku = 173;
-    let qty = 3;
+    let sku = this.state.product.id;
+    let qty = Number(this.refs.qtySelect.getValue());
     this.props.flux.getActions('cart')
                    .add(sku, qty);
   }
@@ -66,17 +66,17 @@ class ProductDetails extends React.Component {
             <div className="price">{ formatMoney(product.price) }</div>
             <div className="addToCart row">
               <div className="col-md-3">
-                <Input type="select" placeholder="0">
-                  <option value="0">1</option>
-                  <option value="1">2</option>
-                  <option value="2">3</option>
-                  <option value="3">4</option>
-                  <option value="4">5</option>
-                  <option value="5">6</option>
-                  <option value="6">7</option>
-                  <option value="7">8</option>
-                  <option value="8">9</option>
-                  <option value="9">10</option>
+                <Input ref="qtySelect" type="select" placeholder="1">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </Input>
               </div>
               <div className="col-md-9 cart-button">
