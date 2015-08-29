@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 import gm from 'gm';
 const imageMagick = gm.subClass({ imageMagick: true });
 
+import jwt from 'jwt-simple';
+
 import productRoutes from './routes/products';
 
 import React from 'react';
@@ -21,6 +23,9 @@ app.set('port', process.env.PORT || 3000);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+// JWT setup
+app.set('jwtTokenSecret', process.env.JWT_SECRET);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
