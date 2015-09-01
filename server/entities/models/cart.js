@@ -1,10 +1,10 @@
 import Bookshelf from '../../bookshelf';
-import ProductLine from 'models/productline';
+import CartItem from 'models/cartitem';
 
 const Cart = Bookshelf.Model.extend({
   tableName: 'carts',
   products: function () {
-    return this.hasMany(ProductLine, 'cart_id');
+    return this.hasMany(CartItem, 'cart_id');
   }
 });
 
