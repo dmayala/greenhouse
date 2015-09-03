@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
   res.send(carts);
 });
 
-
 router.post('/', async (req, res) => {
   try {
     let cart = await Cart.forge().save();

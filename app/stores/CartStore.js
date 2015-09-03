@@ -2,8 +2,14 @@
 
 class CartStore {
   constructor() {
+    this.cartId = null;
     this.products = {};
     this.bindActions(this.alt.getActions('cart'));
+  }
+
+  onCreateCartSuccess(data) {
+    let { id } = data;
+    this.cartId = id; 
   }
 
   onAdd(data) {

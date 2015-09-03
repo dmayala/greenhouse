@@ -17,6 +17,9 @@ const bootstrap = () => {
 };
 
 (async () => {
+  // Get JWT if it exists
+  let jwt = localStorage.getItem('jwt');
+
   // Initialize alt instance
   const flux = new Flux();
 
