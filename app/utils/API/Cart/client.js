@@ -8,8 +8,9 @@ export default {
   async createCart() {
     try {
       let res = await fetch(`${endpoint}`, { method: 'post' });
-      let cart = await res.json();
-      return cart;
+      console.log(res);
+      let jwt = await res.json();
+      return jwt;
     } catch (err) {
       throw new Error(err);
     }

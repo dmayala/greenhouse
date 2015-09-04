@@ -1,3 +1,5 @@
+const APIUtils = require(`utils/API/Cart/${ process.env.BROWSER ? 'client' : 'server' }`)
+
 class CartActions { 
 
   constructor() {
@@ -10,7 +12,8 @@ class CartActions {
   create() {
     let promise = APIUtils.createCart();
     promise.then((result) => {
-      this.actions.createCartSuccess(result);
+      //this.actions.createCartSuccess(result);
+      localStorage.setItem('jwt', result.token);
     }, (reason) => {
       this.actions.createCartFail(reason);
     });

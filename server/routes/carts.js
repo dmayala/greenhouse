@@ -1,6 +1,7 @@
 import express from 'express';
 import Cart from 'models/cart';
 import CartCollection from 'collections/carts';
+import jwt from 'jwt-simple';
 
 const router = express.Router();
 
@@ -15,7 +16,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     let cart = await Cart.forge().save();
-    res.send(cart);
+    let token = jwt.encode({ cart_id: cart.get('id') }, process.env.JWT_SECRET);
+    res.send({ token });
   } catch (err) {
     console.log(err);
     res.status(500).send({ 'error': 'An error has occurred' });

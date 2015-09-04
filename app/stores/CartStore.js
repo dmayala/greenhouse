@@ -20,6 +20,7 @@ class CartStore {
   }
 
   onUpdateQty(data) {
+
   }
 
   onDestroy(data) {
