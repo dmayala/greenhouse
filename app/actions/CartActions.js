@@ -12,8 +12,8 @@ class CartActions {
   create() {
     let promise = APIUtils.createCart();
     promise.then((result) => {
-      //this.actions.createCartSuccess(result);
       localStorage.setItem('jwt', result.token);
+      this.actions.createCartSuccess(result);
     }, (reason) => {
       this.actions.createCartFail(reason);
     });

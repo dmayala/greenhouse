@@ -17,7 +17,8 @@ router.post('/', async (req, res) => {
   try {
     let cart = await Cart.forge().save();
     let token = jwt.encode({ cart_id: cart.get('id') }, process.env.JWT_SECRET);
-    res.send({ token });
+    cart.set('token', token);
+    res.send(cart);
   } catch (err) {
     console.log(err);
     res.status(500).send({ 'error': 'An error has occurred' });
