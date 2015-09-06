@@ -7,6 +7,10 @@ class CartStore {
     this.bindActions(this.alt.getActions('cart'));
   }
 
+  onGetCartSuccess(data) {
+    
+  }
+
   onCreateCartSuccess(data) {
     let { id } = data;
     this.cartId = id; 

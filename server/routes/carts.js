@@ -25,4 +25,13 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  let id = req.params.id;
+  let expansions = req.query.expand;
+  let withRelated = expansions ? expansions.split(',') : [];
+
+  let cart = await Cart.forge({ id }).fetch({ withRelated });
+  res.send(cart);
+});
+
 module.exports = router;

@@ -5,8 +5,20 @@ class CartActions {
   constructor() {
     this.generateActions(
       'createCartSuccess',
-      'createCartFail'
+      'createCartFail',
+      'getCartSuccess',
+      'getCartFail'
     );
+  }
+
+  getCart(id) {
+    let promise = APIUtils.loadCart(id);
+    promise.then((result) => {
+      this.actions.getCartSuccess(result);
+    }, (reason) => {
+      this.actions.getCartFail(reason);
+    });
+    this.alt.resolve(promise);
   }
 
   create() {
