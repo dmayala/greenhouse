@@ -23,5 +23,18 @@ export default {
     } catch (err) {
       throw new Error(err);
     }
+  },
+
+  async addToCart(cartItem) {
+    try {
+      let res = await fetch(`${endpoint}`, {
+        method: 'put',
+        body: JSON.stringify(cartItem) 
+      });
+      let cart = await res.json();
+      return cart;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }

@@ -8,7 +8,8 @@ class CartStore {
   }
 
   onGetCartSuccess(data) {
-    
+    let { id } = data;
+    this.cartId = id; 
   }
 
   onCreateCartSuccess(data) {

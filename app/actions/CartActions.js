@@ -7,7 +7,9 @@ class CartActions {
       'createCartSuccess',
       'createCartFail',
       'getCartSuccess',
-      'getCartFail'
+      'getCartFail',
+      'addToCartSuccess',
+      'addToCartFail'
     );
   }
 
@@ -33,7 +35,13 @@ class CartActions {
   }
 
   add(sku, qty) {
-    return { sku, qty };
+    let promise = APIUtils.addToCart({ sky, qty });
+    promise.then((result) => {
+      this.actions.addToCartSuccess(result);
+    }, (reason) => {
+      this.actions.addToCartFail(reason);
+    });
+    this.alt.resolve(promise);
   }
 
   updateQty(sku, qty) {

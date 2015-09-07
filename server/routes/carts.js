@@ -1,5 +1,6 @@
 import express from 'express';
 import Cart from 'models/cart';
+import CartItem from 'models/cartitem';
 import CartCollection from 'collections/carts';
 import jwt from 'jwt-simple';
 
@@ -18,6 +19,21 @@ router.post('/', async (req, res) => {
     let cart = await Cart.forge().save();
     let token = jwt.encode({ cart_id: cart.get('id') }, process.env.JWT_SECRET);
     cart.set('token', token);
+    res.send(cart);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ 'error': 'An error has occurred' });
+  }
+});
+
+
+router.post('/:id/products', async (req, res) => {
+  let id = req.params.id;
+  let { sku, qty } = req.body;
+
+  try {
+    let cartItem = await CartItem.forge({ sku, qty }).save();
+    let cart = await Cart.forge({ id }).fetch();
     res.send(cart);
   } catch (err) {
     console.log(err);
