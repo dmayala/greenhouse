@@ -25,10 +25,14 @@ export default {
     }
   },
 
-  async addToCart(cartItem) {
+  async addToCart(id, cartItem) {
     try {
-      let res = await fetch(`${endpoint}`, {
+      let res = await fetch(`${endpoint}/${id}/products`, {
         method: 'put',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(cartItem) 
       });
       let cart = await res.json();

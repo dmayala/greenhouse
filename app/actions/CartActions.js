@@ -34,8 +34,8 @@ class CartActions {
     this.alt.resolve(promise);
   }
 
-  add(sku, qty) {
-    let promise = APIUtils.addToCart({ sky, qty });
+  add(cartId, sku, qty) {
+    let promise = APIUtils.addToCart(cartId, { sku, qty });
     promise.then((result) => {
       this.actions.addToCartSuccess(result);
     }, (reason) => {

@@ -38,10 +38,13 @@ class ProductDetails extends React.Component {
   }
 
   addToCart = () => {
+    let cartId = this.props.flux.getStore('cart')
+                                .getState()
+                                .cartId;
     let sku = this.state.product.id;
     let qty = Number(this.refs.qtySelect.getValue());
     this.props.flux.getActions('cart')
-                   .add(sku, qty);
+                   .add(cartId, sku, qty);
   }
 
   _onChange = () => {

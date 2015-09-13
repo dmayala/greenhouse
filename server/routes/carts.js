@@ -27,12 +27,13 @@ router.post('/', async (req, res) => {
 });
 
 
-router.post('/:id/products', async (req, res) => {
+router.put('/:id/products', async (req, res) => {
   let id = req.params.id;
+  console.log(req.body);
   let { sku, qty } = req.body;
 
   try {
-    let cartItem = await CartItem.forge({ sku, qty }).save();
+    let cartItem = await CartItem.forge({ cart_id: id, sku, quantity: qty }).save();
     let cart = await Cart.forge({ id }).fetch();
     res.send(cart);
   } catch (err) {
