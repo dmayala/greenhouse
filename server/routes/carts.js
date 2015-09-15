@@ -1,6 +1,7 @@
 import express from 'express';
 import Cart from 'models/cart';
 import CartItem from 'models/cartitem';
+import CartItems from 'collections/cartitems';
 import CartCollection from 'collections/carts';
 import jwt from 'jwt-simple';
 
@@ -29,11 +30,18 @@ router.post('/', async (req, res) => {
 
 router.put('/:id/products', async (req, res) => {
   let id = req.params.id;
-  console.log(req.body);
   let { sku, qty } = req.body;
 
   try {
-    let cartItem = await CartItem.forge({ cart_id: id, sku, quantity: qty }).save();
+    let cartItem = await CartItem.forge().where({ cart_id: id, sku }).fetch();
+
+    if (cartItem) {
+      cartItem.set('quantity', cartItem.get('quantity') + qty);
+      await cartItem.save();
+    } else {
+      await CartItem.forge({ cart_id: id, sku, quantity: qty }).save();
+    }
+
     let cart = await Cart.forge({ id }).fetch();
     res.send(cart);
   } catch (err) {
