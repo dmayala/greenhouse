@@ -17,10 +17,10 @@ class CartStore {
     this.cartId = id; 
   }
 
-  onAdd(data) {
-    let { sku, qty } = data;
+  onAddToCartSuccess(data) {
+    let { sku, quantity } = data;
     let product = this.products[sku] || { qty: 0 };
-    product.qty = product.qty + qty;  
+    product.qty = quantity;  
     this.products[sku] = product;
   }
 

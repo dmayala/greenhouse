@@ -37,13 +37,11 @@ router.put('/:id/products', async (req, res) => {
 
     if (cartItem) {
       cartItem.set('quantity', cartItem.get('quantity') + qty);
-      await cartItem.save();
+      cartItem = await cartItem.save();
     } else {
-      await CartItem.forge({ cart_id: id, sku, quantity: qty }).save();
+      cartItem = await CartItem.forge({ cart_id: id, sku, quantity: qty }).save();
     }
-
-    let cart = await Cart.forge({ id }).fetch();
-    res.send(cart);
+    res.send(cartItem);
   } catch (err) {
     console.log(err);
     res.status(500).send({ 'error': 'An error has occurred' });
