@@ -7,7 +7,7 @@ export default {
   
   async loadCart(id) {
     try {
-      let res = await fetch(`${endpoint}/${id}`);
+      let res = await fetch(`${endpoint}/${id}?expand=products`);
       let cart = await res.json();
       return cart;
     } catch (err) {

@@ -4,7 +4,7 @@ export default {
 
   async loadCart(id) {
     try {
-      let cart = await Cart.forge({ id }).fetch();
+      let cart = await Cart.forge({ id }).fetch({ withRelated: [ 'products' ] });
       return cart.toJSON();
     } catch (err) {
       throw new Error(err);

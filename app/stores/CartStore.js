@@ -8,8 +8,12 @@ class CartStore {
   }
 
   onGetCartSuccess(data) {
-    let { id } = data;
+    let { id, products } = data;
     this.cartId = id; 
+    products.forEach((product) => {
+      let { sku, quantity } = product;
+      this.products[sku] = { qty: quantity };
+    });
   }
 
   onCreateCartSuccess(data) {
