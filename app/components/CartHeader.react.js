@@ -16,7 +16,7 @@ class CartHeader extends React.Component {
     let token = localStorage.getItem('jwt');
     if (token) {
       this.props.flux.getActions('cart')
-                     .getCart(24);
+                     .getCart();
     }
   }
 

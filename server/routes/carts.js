@@ -14,7 +14,6 @@ router.get('/', async (req, res) => {
   let carts = await CartCollection.forge().fetch({ withRelated });
   res.send(carts);
 });
-
 router.post('/', async (req, res) => {
   try {
     let cart = await Cart.forge().save();
@@ -44,6 +43,25 @@ router.put('/:id/products', async (req, res) => {
     res.send(cartItem);
   } catch (err) {
     console.log(err);
+    res.status(500).send({ 'error': 'An error has occurred' });
+  }
+});
+
+router.get('/user', async (req, res) => {
+
+  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+    try {
+      let expansions = req.query.expand;
+      let withRelated = expansions ? expansions.split(',') : [];
+      let token = req.headers.authorization.split(' ')[1];
+      let decoded = jwt.decode(token, process.env.JWT_SECRET);
+      let cart = await Cart.forge({ id: decoded.cart_id }).fetch({ withRelated });
+      res.send(cart);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ 'error': 'An error has occurred' });
+    }
+  } else {
     res.status(500).send({ 'error': 'An error has occurred' });
   }
 });

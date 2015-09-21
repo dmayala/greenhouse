@@ -5,9 +5,14 @@ const endpoint = '/api/carts';
 
 export default {
   
-  async loadCart(id) {
+  async loadCart(token) {
     try {
-      let res = await fetch(`${endpoint}/${id}?expand=products`);
+      let res = await fetch(`${endpoint}/user?expand=products`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       let cart = await res.json();
       return cart;
     } catch (err) {

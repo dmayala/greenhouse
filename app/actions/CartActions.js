@@ -13,8 +13,9 @@ class CartActions {
     );
   }
 
-  getCart(id) {
-    let promise = APIUtils.loadCart(id);
+  getCart() {
+    let token = localStorage.getItem('jwt');
+    let promise = APIUtils.loadCart(token);
     promise.then((result) => {
       this.actions.getCartSuccess(result);
     }, (reason) => {
