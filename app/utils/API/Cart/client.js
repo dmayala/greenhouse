@@ -7,7 +7,7 @@ export default {
   
   async loadCart(token) {
     try {
-      let res = await fetch(`${endpoint}/user?expand=products`, {
+      let res = await fetch(`${endpoint}/user?expand=products.product`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`

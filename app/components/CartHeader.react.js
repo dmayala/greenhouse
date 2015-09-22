@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavItemLink} from 'react-router-bootstrap';
 
 class CartHeader extends React.Component {
 
@@ -47,14 +48,11 @@ class CartHeader extends React.Component {
     }
 
     return (
-        <li>
-          <a>
-            <i className="glyphicon glyphicon-shopping-cart"> { totalQty }</i>
-          </a>
-        </li>
+        <NavItemLink eventKey={1} to="cart">
+          <i className="glyphicon glyphicon-shopping-cart"> { totalQty }</i>
+        </NavItemLink>
     );
   }
-
 
 }
 
