@@ -29,16 +29,17 @@ router.post('/', async (req, res) => {
 
 router.put('/:id/products', async (req, res) => {
   let id = req.params.id;
-  let { sku, qty } = req.body;
+  let { sku, quantity } = req.body;
 
   try {
-    let cartItem = await CartItem.forge().where({ cart_id: id, sku }).fetch();
+    let cartItem = await CartItem.forge().where({ cart_id: id, sku }).fetch({ withRelated: [ 'product' ] });
 
     if (cartItem) {
-      cartItem.set('quantity', cartItem.get('quantity') + qty);
+      cartItem.set('quantity', cartItem.get('quantity') + quantity);
       cartItem = await cartItem.save();
     } else {
-      cartItem = await CartItem.forge({ cart_id: id, sku, quantity: qty }).save();
+      await CartItem.forge({ cart_id: id, sku, quantity }).save();
+      cartItem = await CartItem.forge().where({ cart_id: id, sku }).fetch({ withRelated: [ 'product' ] });
     }
     res.send(cartItem);
   } catch (err) {

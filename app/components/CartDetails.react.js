@@ -1,4 +1,6 @@
 import React from 'react';
+import {Table} from 'react-bootstrap';
+import {formatMoney} from 'accounting';
 
 if (process.env.BROWSER) {
   require('stylesheets/components/_CartDetails');
@@ -38,10 +40,34 @@ class CartDetails extends React.Component {
   }
 
   render() {
+    let products = this.state.products.map((product, index) => {
+      let { name, quantity, sku, price } = product;
+      return (
+        <tr key={ index }>
+          <td>{ name }</td>
+          <td>{ quantity }</td>
+          <td>{ sku }</td>
+          <td>{ formatMoney(price) }</td>
+        </tr>
+      );
+    });
+
     return (
-      <pre>
-        { JSON.stringify(this.state) }
-      </pre>
+      <div className="container">
+        <Table hover>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>SKU</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            { products }
+          </tbody>
+        </Table>
+      </div>
     );
   }
 }

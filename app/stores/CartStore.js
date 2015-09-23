@@ -1,18 +1,19 @@
-//import ProductDetailsActions from '../actions/ProductDetailsActions';
+import {findIndex} from 'lodash';
 
 class CartStore {
   constructor() {
     this.cartId = null;
-    this.products = {};
+    this.products = [];
     this.bindActions(this.alt.getActions('cart'));
   }
 
   onGetCartSuccess(data) {
     let { id, products } = data;
     this.cartId = id; 
-    products.forEach((product) => {
-      let { sku, quantity } = product;
-      this.products[sku] = { qty: quantity };
+    this.products = products.map((cartitem) => {
+      let { sku, quantity } = cartitem;
+      let { name, price } = cartitem.product;
+      return { sku, name, price, quantity };
     });
   }
 
@@ -22,10 +23,16 @@ class CartStore {
   }
 
   onAddToCartSuccess(data) {
-    let { sku, quantity } = data;
-    let product = this.products[sku] || { qty: 0 };
-    product.qty = quantity;  
-    this.products[sku] = product;
+    let index = findIndex(this.products, { sku: data.sku });
+    index = index > -1 ? index : this.products.length;
+    let product = this.products[index] || { 
+                                            name: data.product.name,
+                                            price: data.product.price,
+                                            sku: data.sku,
+                                            quantity: 0 
+                                          };
+    product.quantity = data.quantity;  
+    this.products[index] = product;
   }
 
   onUpdateQty(data) {

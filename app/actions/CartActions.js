@@ -35,8 +35,8 @@ class CartActions {
     this.alt.resolve(promise);
   }
 
-  add(cartId, sku, qty) {
-    let promise = APIUtils.addToCart(cartId, { sku, qty });
+  add(cartId, sku, quantity) {
+    let promise = APIUtils.addToCart(cartId, { sku, quantity });
     promise.then((result) => {
       this.actions.addToCartSuccess(result);
     }, (reason) => {
@@ -45,8 +45,8 @@ class CartActions {
     this.alt.resolve(promise);
   }
 
-  updateQty(sku, qty) {
-    return { sku, qty };
+  updateQty(sku, quantity) {
+    return { sku, quantity };
   }
 
   destroy(sku) {

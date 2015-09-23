@@ -43,7 +43,7 @@ class CartHeader extends React.Component {
 
     if (keys.length > 0) {
       keys.forEach((sku) => {
-        totalQty += products[sku].qty; 
+        totalQty += products[sku].quantity; 
       });
     }
 
