@@ -40,8 +40,10 @@ class CartDetails extends React.Component {
   }
 
   render() {
+    let total = 0;
     let products = this.state.products.map((product, index) => {
       let { name, quantity, sku, price } = product;
+      total += Number(price);
       return (
         <tr key={ index }>
           <td>{ name }</td>
@@ -67,6 +69,7 @@ class CartDetails extends React.Component {
             { products }
           </tbody>
         </Table>
+        <span>Total { formatMoney(total) }</span>
       </div>
     );
   }
