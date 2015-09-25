@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
+import {Table, Input} from 'react-bootstrap';
 import {formatMoney} from 'accounting';
 
 if (process.env.BROWSER) {
@@ -50,12 +50,27 @@ class CartDetails extends React.Component {
           <td>{ quantity }</td>
           <td>{ sku }</td>
           <td>{ formatMoney(price) }</td>
+          <td>
+            <Input ref="qtySelect" type="select" placeholder="1">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </Input>
+          </td>
         </tr>
       );
     });
 
     return (
       <div className="container">
+      <h2>Shopping Cart</h2>
         <Table hover>
           <thead>
             <tr>
@@ -63,6 +78,7 @@ class CartDetails extends React.Component {
               <th>Quantity</th>
               <th>SKU</th>
               <th>Price</th>
+              <th>Quantity</th>
             </tr>
           </thead>
           <tbody>
