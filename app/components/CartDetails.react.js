@@ -42,16 +42,18 @@ class CartDetails extends React.Component {
   render() {
     let total = 0;
     let products = this.state.products.map((product, index) => {
-      let { name, quantity, sku, price } = product;
+      let { name, image, quantity, sku, price } = product;
       total += Number(price);
+
+
       return (
         <tr key={ index }>
-          <td>{ name }</td>
-          <td>{ quantity }</td>
-          <td>{ sku }</td>
-          <td>{ formatMoney(price) }</td>
           <td>
-            <Input ref="qtySelect" type="select" placeholder="1">
+            <img src={ `/img/products/100/${product.image}` } />
+            <span> { name }</span>
+          </td>
+          <td>
+            <Input ref="qtySelect" type="select" defaultValue={ quantity }>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -64,6 +66,8 @@ class CartDetails extends React.Component {
               <option value="10">10</option>
             </Input>
           </td>
+          <td>{ sku }</td>
+          <td>{ formatMoney(price) }</td>
         </tr>
       );
     });
@@ -78,7 +82,6 @@ class CartDetails extends React.Component {
               <th>Quantity</th>
               <th>SKU</th>
               <th>Price</th>
-              <th>Quantity</th>
             </tr>
           </thead>
           <tbody>

@@ -12,8 +12,8 @@ class CartStore {
     this.cartId = id; 
     this.products = products.map((cartitem) => {
       let { sku, quantity } = cartitem;
-      let { name, price } = cartitem.product;
-      return { sku, name, price, quantity };
+      let { name, price, image } = cartitem.product;
+      return { sku, name, price, image, quantity };
     });
   }
 
