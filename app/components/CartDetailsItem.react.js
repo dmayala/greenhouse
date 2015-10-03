@@ -1,8 +1,16 @@
 import React from 'react';
-import {Input} from 'react-bootstrap';
+import {Button, Input} from 'react-bootstrap';
 import {formatMoney} from 'accounting';
 
 class CartDetailsItem extends React.Component {
+
+  _onSelect = (e) => {
+    console.log(`selected ${e.target.value}`);
+  }
+
+  _onClick = (e) => {
+    console.log('clicked remove');
+  }
 
   render() {
     let { name, image, quantity, sku, price } = this.props.product;
@@ -12,7 +20,6 @@ class CartDetailsItem extends React.Component {
       );
     });
 
-
     return (
       <tr>
         <td>
@@ -20,13 +27,15 @@ class CartDetailsItem extends React.Component {
           <span> { name }</span>
         </td>
         <td>
-          <Input ref="qtySelect" type="select" defaultValue={ quantity }>
+          <Input ref="qtySelect" type="select" defaultValue={ quantity } onChange={ this._onSelect }>
             { options }
           </Input>
         </td>
         <td>{ sku }</td>
         <td>{ formatMoney(price) }</td>
-        <td><button className="btn btn-default"><i className="glyphicon glyphicon-trash"></i> Remove</button></td>
+        <td>
+          <Button onClick={ this._onClick }><i className="glyphicon glyphicon-trash"></i> Remove</Button>
+        </td>
       </tr>
     );
   }
