@@ -29,6 +29,7 @@ class CartStore {
                                             name: data.product.name,
                                             price: data.product.price,
                                             sku: data.sku,
+                                            image: data.product.image,
                                             quantity: 0 
                                           };
     product.quantity = data.quantity;  
