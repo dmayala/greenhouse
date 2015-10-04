@@ -36,6 +36,14 @@ class CartStore {
     this.products[index] = product;
   }
 
+  onRemoveFromCartSuccess(data) {
+    let products = this.products;
+    let index = findIndex(products, { sku: data.sku });
+    if (index > -1) {
+        products.splice(index, 1);
+    }
+  }
+
   onUpdateQty(data) {
 
   }

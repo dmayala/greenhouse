@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Input} from 'react-bootstrap';
 import {formatMoney} from 'accounting';
+import {find} from 'lodash';
 
 if (process.env.BROWSER) {
   require('stylesheets/components/_ProductDetails');
@@ -38,11 +39,20 @@ class ProductDetails extends React.Component {
   }
 
   addToCart = () => {
-    let cartId = this.props.flux.getStore('cart')
-                                .getState()
-                                .cartId;
+    let cartState = this.props.flux.getStore('cart')
+                                   .getState();
+    let cartId = cartState.cartId;
+    let cartItem = find(cartState.products, (product) => {
+      return product.sku == this.state.product.id;
+    });
+
     let sku = this.state.product.id;
     let qty = Number(this.refs.qtySelect.getValue());
+
+    if (cartItem) {
+      qty += cartItem.quantity;
+    }
+
     this.props.flux.getActions('cart')
                    .add(cartId, sku, qty);
   }

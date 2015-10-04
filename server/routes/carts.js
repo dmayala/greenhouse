@@ -35,13 +35,27 @@ router.put('/:id/products', async (req, res) => {
     let cartItem = await CartItem.forge().where({ cart_id: id, sku }).fetch({ withRelated: [ 'product' ] });
 
     if (cartItem) {
-      cartItem.set('quantity', cartItem.get('quantity') + quantity);
+      cartItem.set('quantity', quantity);
       cartItem = await cartItem.save();
     } else {
       await CartItem.forge({ cart_id: id, sku, quantity }).save();
       cartItem = await CartItem.forge().where({ cart_id: id, sku }).fetch({ withRelated: [ 'product' ] });
     }
     res.send(cartItem);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ 'error': 'An error has occurred' });
+  }
+});
+
+router.delete('/:id/products', async (req, res) => {
+  let id = req.params.id;
+  let { sku } = req.body;
+
+  try {
+    let cartItem = await CartItem.forge().where({ cart_id: id, sku });
+    cartItem = await cartItem.destroy();
+    res.send({ sku });
   } catch (err) {
     console.log(err);
     res.status(500).send({ 'error': 'An error has occurred' });

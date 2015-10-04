@@ -45,5 +45,22 @@ export default {
     } catch (err) {
       throw new Error(err);
     }
+  },
+
+  async removeFromCart(id, cartItem) {
+    try {
+      let res = await fetch(`${endpoint}/${id}/products`, {
+        method: 'delete',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cartItem) 
+      });
+      let cart = await res.json();
+      return cart;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }

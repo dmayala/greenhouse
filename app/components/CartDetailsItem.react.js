@@ -4,12 +4,23 @@ import {formatMoney} from 'accounting';
 
 class CartDetailsItem extends React.Component {
 
+  static propTypes = {
+    flux: React.PropTypes.object.isRequired
+  }
+
   _onSelect = (e) => {
-    console.log(`selected ${e.target.value}`);
+    let cartId = this.props.cartId;
+    let sku = this.props.product.sku;
+    let qty = Number(e.target.value);
+    this.props.flux.getActions('cart')
+                   .add(cartId, sku, qty);
   }
 
   _onClick = (e) => {
-    console.log('clicked remove');
+    let cartId = this.props.cartId;
+    let sku = this.props.product.sku;
+    this.props.flux.getActions('cart')
+                   .destroy(cartId, sku);
   }
 
   render() {

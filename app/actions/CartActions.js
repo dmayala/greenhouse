@@ -9,7 +9,9 @@ class CartActions {
       'getCartSuccess',
       'getCartFail',
       'addToCartSuccess',
-      'addToCartFail'
+      'addToCartFail',
+      'removeFromCartSuccess',
+      'removeFromCArtFail'
     );
   }
 
@@ -49,8 +51,14 @@ class CartActions {
     return { sku, quantity };
   }
 
-  destroy(sku) {
-    return { sku };
+  destroy(cartId, sku) {
+    let promise = APIUtils.removeFromCart(cartId, { sku });
+    promise.then((result) => {
+      this.actions.removeFromCartSuccess(result);
+    }, (reason) => {
+      this.actions.removeFromCartFail(reason);
+    });
+    this.alt.resolve(promise);
   }
 
 }

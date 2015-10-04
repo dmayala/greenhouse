@@ -43,9 +43,9 @@ class CartDetails extends React.Component {
   render() {
     let total = 0;
     let products = this.state.products.map((product, index) => {
-      total += Number(product.price);
+      total += Number(product.price) * Number(product.quantity);
       return (
-        <CartDetailsItem key={ index } product={ product } /> 
+        <CartDetailsItem flux={ this.props.flux } key={ index } cartId={ this.state.cartId } product={ product } /> 
       );
     });
 
