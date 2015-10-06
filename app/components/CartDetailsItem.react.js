@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Input} from 'react-bootstrap';
+import {Link} from 'react-router';
 import {formatMoney} from 'accounting';
 
 class CartDetailsItem extends React.Component {
@@ -9,9 +10,14 @@ class CartDetailsItem extends React.Component {
   }
 
   _onSelect = (e) => {
+    let qty = Number(e.target.value);
+
+    if (qty < 1) {
+      e.preventDefault();
+    }
+
     let cartId = this.props.cartId;
     let sku = this.props.product.sku;
-    let qty = Number(e.target.value);
     this.props.flux.getActions('cart')
                    .add(cartId, sku, qty);
   }
@@ -25,22 +31,17 @@ class CartDetailsItem extends React.Component {
 
   render() {
     let { name, image, quantity, sku, price } = this.props.product;
-    let options = Array.from(Array(10), (x, y) => {
-      return (
-        <option key={y} value={ y + 1 }>{ y + 1 }</option>
-      );
-    });
 
     return (
       <tr>
         <td>
-          <img src={ `/img/products/100/${ image }` } />
-          <span> { name }</span>
+          <Link to={ `/products/${ sku }` }>
+            <img src={ `/img/products/100/${ image }` } />
+            <span> { name }</span>
+          </Link>
         </td>
         <td>
-          <Input ref="qtySelect" type="select" defaultValue={ quantity } onChange={ this._onSelect }>
-            { options }
-          </Input>
+          <input ref="qtySelect" min="1" max="100" maxLength="3" type="number" defaultValue={ quantity } onKeyDown={ this._onSelect } />
         </td>
         <td>{ sku }</td>
         <td>{ formatMoney(price) }</td>
