@@ -9,24 +9,41 @@ class CartDetailsItem extends React.Component {
     flux: React.PropTypes.object.isRequired
   }
 
-  _onSelect = (e) => {
-    let qty = Number(e.target.value);
+  state = {
+    updating: false
+  };
 
-    if (qty < 1) {
-      e.preventDefault();
+  _onInput = (e) => {
+    let inputVal = e.target.value;
+    if (!inputVal.length || Number(inputVal) < 0) {
+      e.preventDefault(); 
+      return this.setState({ updating: false });
+    }
+    
+    this.setState({ updating: true });
+  }
+
+  _onRemove = (e) => {
+    let cartId = this.props.cartId;
+    let sku = this.props.product.sku;
+    this.props.flux.getActions('cart')
+                   .destroy(cartId, sku);
+  }
+
+  _onUpdate = (e) => {
+    e.preventDefault();
+    let qty = Number(this.refs.qtySelect.getDOMNode().value);
+
+    if (qty === 0) {
+      return this._onRemove();
     }
 
     let cartId = this.props.cartId;
     let sku = this.props.product.sku;
     this.props.flux.getActions('cart')
                    .add(cartId, sku, qty);
-  }
 
-  _onClick = (e) => {
-    let cartId = this.props.cartId;
-    let sku = this.props.product.sku;
-    this.props.flux.getActions('cart')
-                   .destroy(cartId, sku);
+    this.setState({ updating: false });
   }
 
   render() {
@@ -41,12 +58,14 @@ class CartDetailsItem extends React.Component {
           </Link>
         </td>
         <td>
-          <input ref="qtySelect" min="1" max="100" maxLength="3" type="number" defaultValue={ quantity } onKeyDown={ this._onSelect } />
+          <input ref="qtySelect" min="0" max="100" maxLength="3" type="number" defaultValue={ quantity } onInput={ this._onInput } />
+          <br />
+          { this.state.updating ? <a href="#" onClick={ this._onUpdate }>Update</a> : null }
         </td>
         <td>{ sku }</td>
         <td>{ formatMoney(price) }</td>
         <td>
-          <Button onClick={ this._onClick }><i className="glyphicon glyphicon-trash"></i> Remove</Button>
+          <Button onClick={ this._onRemove }><i className="glyphicon glyphicon-trash"></i> Remove</Button>
         </td>
       </tr>
     );
