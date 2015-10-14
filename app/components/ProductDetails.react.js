@@ -20,7 +20,6 @@ class ProductDetails extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ product: {} });
     if (this.context.router.getCurrentParams().id) {
       this.props.flux.getActions('productDetails')
                      .getProduct(this.props.params.id);
@@ -34,9 +33,10 @@ class ProductDetails extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.flux
-              .getStore('productDetails')
-              .unlisten(this._onChange);
+    var store = this.props.flux.getStore('productDetails');
+    store.unlisten(this._onChange);
+    console.log(store);
+    this.props.flux.recycle(store);
   }
 
   addToCart = () => {
@@ -73,7 +73,7 @@ class ProductDetails extends React.Component {
       <div className="product-details container">
         <div className="row">
           <div className="col-md-8 product-image">
-            <img src={ `/img/products/720/${product.image}` } />
+            { product.image ? <img src={ `/img/products/720/${product.image}` } /> : null }
           </div>
           <div className="col-md-4">
             <div className="name"><h1>{ product.name }</h1></div>
