@@ -20,6 +20,7 @@ class ProductDetails extends React.Component {
   }
 
   componentWillMount() {
+    this.setState({ product: {} });
     if (this.context.router.getCurrentParams().id) {
       this.props.flux.getActions('productDetails')
                      .getProduct(this.props.params.id);
